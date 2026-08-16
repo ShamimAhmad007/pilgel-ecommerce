@@ -1,7 +1,8 @@
 import { useState } from "react";
 
+const WHATSAPP_NUMBER = "919910524369"; // no +, no spaces, no dashes
+
 export default function Contact() {
-  const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState({});
   const [values, setValues] = useState({ name: "", email: "", message: "" });
 
@@ -29,7 +30,10 @@ export default function Contact() {
       return;
     }
     setErrors({});
-    setSent(true);
+
+    const text = `Hi, I'm ${values.name} (${values.email}).\n\n${values.message}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
   }
 
   return (
@@ -39,84 +43,78 @@ export default function Contact() {
         Let's work together
       </h1>
 
-      {sent ? (
-        <p className="text-orange-400 text-xl">
-          Thanks for reaching out — we'll get back to you soon! 🎉
-        </p>
-      ) : (
-        <form
-          onSubmit={handleSubmit}
-          noValidate
-          className="max-w-xl flex flex-col gap-6"
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="max-w-xl flex flex-col gap-6"
+      >
+        <div>
+          <label htmlFor="name" className="sr-only">
+            Your name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            value={values.name}
+            onChange={handleChange}
+            placeholder="Your name"
+            className={`w-full bg-transparent border-b py-3 outline-none placeholder-white/50 text-base ${
+              errors.name ? "border-red-500" : "border-white/40"
+            }`}
+          />
+          {errors.name && (
+            <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="email" className="sr-only">
+            Your email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            value={values.email}
+            onChange={handleChange}
+            placeholder="Your email"
+            className={`w-full bg-transparent border-b py-3 outline-none placeholder-white/50 text-base ${
+              errors.email ? "border-red-500" : "border-white/40"
+            }`}
+          />
+          {errors.email && (
+            <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="message" className="sr-only">
+            Your message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            value={values.message}
+            onChange={handleChange}
+            placeholder="Your message"
+            rows={4}
+            className={`w-full bg-transparent border-b py-3 outline-none placeholder-white/50 resize-none text-base ${
+              errors.message ? "border-red-500" : "border-white/40"
+            }`}
+          />
+          {errors.message && (
+            <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+          )}
+        </div>
+
+        <button
+          type="submit"
+          className="rounded-full bg-orange-500 text-white px-8 py-3 w-fit hover:bg-white hover:text-black transition-colors duration-300 flex items-center gap-2"
         >
-          <div>
-            <label htmlFor="name" className="sr-only">
-              Your name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              value={values.name}
-              onChange={handleChange}
-              placeholder="Your name"
-              className={`w-full bg-transparent border-b py-3 outline-none placeholder-white/50 text-base ${
-                errors.name ? "border-red-500" : "border-white/40"
-              }`}
-            />
-            {errors.name && (
-              <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="email" className="sr-only">
-              Your email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={handleChange}
-              placeholder="Your email"
-              className={`w-full bg-transparent border-b py-3 outline-none placeholder-white/50 text-base ${
-                errors.email ? "border-red-500" : "border-white/40"
-              }`}
-            />
-            {errors.email && (
-              <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-            )}
-          </div>
-
-          <div>
-            <label htmlFor="message" className="sr-only">
-              Your message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={values.message}
-              onChange={handleChange}
-              placeholder="Your message"
-              rows={4}
-              className={`w-full bg-transparent border-b py-3 outline-none placeholder-white/50 resize-none text-base ${
-                errors.message ? "border-red-500" : "border-white/40"
-              }`}
-            />
-            {errors.message && (
-              <p className="text-red-400 text-sm mt-1">{errors.message}</p>
-            )}
-          </div>
-
-          <button
-            type="submit"
-            className="rounded-full bg-orange-500 text-white px-8 py-3 w-fit hover:bg-white hover:text-black transition-colors duration-300"
-          >
-            Send message
-          </button>
-        </form>
-      )}
+          Send via WhatsApp
+        </button>
+      </form>
     </section>
   );
 }

@@ -19,6 +19,9 @@ import ProjectDetail from "./pages/ProjectDetail";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import NotFound from "./pages/NotFound";
+import Licenses from "./pages/Licenses";
+import StyleGuide from "./pages/StyleGuide";
+import Changelog from "./pages/Changelog";
 
 function Home() {
   useEffect(() => {
@@ -58,6 +61,9 @@ function App() {
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="/licenses" element={<Licenses />} />
+        <Route path="/style-guide" element={<StyleGuide />} />
+        <Route path="/changelog" element={<Changelog />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

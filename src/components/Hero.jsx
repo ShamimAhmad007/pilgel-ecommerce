@@ -15,10 +15,13 @@ export default function Hero() {
         <source src="/hero-shape.mp4" type="video/mp4" />
       </video>
 
-      <p className="absolute top-24 right-4 md:top-32 md:right-8 text-white text-right font-medium text-sm md:text-base">
+      <p
+        className="absolute top-24 right-4 md:top-32 md:right-8 text-white text-right italic text-lg md:text-2xl leading-snug"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+      >
         Smart creatives
         <br />
-        innovate & create
+        <span className="text-orange-400">innovate</span> & create
       </p>
     </section>
   );

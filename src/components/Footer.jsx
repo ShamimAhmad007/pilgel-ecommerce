@@ -1,5 +1,5 @@
 import Marquee from "./Marquee";
-
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="bg-[#1a1410] text-white">
@@ -10,15 +10,15 @@ export default function Footer() {
           Assisted by AI .
         </p>
         <div className="flex gap-6 text-sm text-white/60">
-          <a href="#" className="hover:text-white">
+          <Link to="/licenses" className="hover:text-white">
             Licenses
-          </a>
-          <a href="#" className="hover:text-white">
+          </Link>
+          <Link to="/style-guide" className="hover:text-white">
             Style Guide
-          </a>
-          <a href="#" className="hover:text-white">
+          </Link>
+          <Link to="/changelog" className="hover:text-white">
             Changelog
-          </a>
+          </Link>
         </div>
       </div>
       <div className="bg-black py-8 overflow-hidden">
