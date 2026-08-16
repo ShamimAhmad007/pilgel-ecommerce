@@ -2,7 +2,7 @@
 
 A fully responsive, animated e-commerce frontend built with React, Tailwind CSS, and GSAP — recreating the design and interactions of a modern creative studio website, with a working cart, checkout flow, and dynamic product imagery.
 
-**Live Demo:** []
+**Live Demo:** [https://pilgel-ecommerce.vercel.app/]
 
 ---
 
